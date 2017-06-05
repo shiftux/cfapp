@@ -1,0 +1,4 @@
+0,30 * * * * /usr/bin/docker exec -i mongodb_server /bin/sh /data/do_backup.sh >> /root/crondebug.txt 2>&1
+45 2 * * * find /root/cfcalendar/mongo/data/cfcalendar-admin-db-backup -mtime +7 -exec rm -rf {} \;
+05 3 * * * sh /root/cfcalendar/mongo/data/daily_backup_mail.sh
+# 45 3 * * * find /root/cfcalendar/*.tar.gz* -mtime +30 -exec rm -rf {} \;

@@ -1,0 +1,24 @@
+# sources:
+# https://github.com/scaleway/docker-machine-driver-scaleway
+# https://blog.online.net/2016/05/03/docker-machine-on-scaleway/
+
+# install go
+https://www.digitalocean.com/community/tutorials/how-to-install-go-1-7-on-centos-7
+# install the scw client
+https://github.com/scaleway/scaleway-cli
+# scaleway docker driver
+https://blog.online.net/2016/05/03/docker-machine-on-scaleway/
+
+# get token and organization
+scw --sensitive=true info
+
+# get and install the scaleway docker driver
+curl -sL https://github.com/scaleway/docker-machine-driver-scaleway/releases/download/v1.3/docker-machine-driver-scaleway_1.3_linux_amd64.tar.gz -O
+tar -xzvf docker-machine-driver-scaleway_1.3_linux_amd64.tar.gz
+rm docker-machine-driver-scaleway_1.3_linux_amd64.tar.gz
+chmod +x docker-machine-driver-scaleway_1.3_linux_amd64/docker-machine-driver-scaleway
+sudo cp docker-machine-driver-scaleway_1.3_linux_amd64/docker-machine-driver-scaleway /usr/local/bin/
+rm -rf docker-machine-driver-scaleway_1.3_linux_amd64/
+
+# create a container
+docker-machine create -d scaleway --scaleway-token=a64087e3-54a5-4dc6-8412-cb7f422199f7 --scaleway-organization=19956afa-383e-45a6-91f5-766a6f248afe  --scaleway-name="scw-docker01" --scaleway-commercial-type "VC1S" --scaleway-region "ams1" scw-docker01

@@ -1,0 +1,3 @@
+docker exec -it mongodb_server /bin/bash
+
+mongorestore --db admin --drop /data/cfcalendar-admin-db-backup/DDDDDDDDDDATE/admin/

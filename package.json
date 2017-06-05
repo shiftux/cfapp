@@ -1,0 +1,25 @@
+{
+  "name": "cfcalendar",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "babel-runtime": "^6.22.0",
+    "bcrypt": "^1.0.2",
+    "chart.js": "^2.5.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shiftux/cfcalendar.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shiftux/cfcalendar/issues"
+  },
+  "homepage": "https://github.com/shiftux/cfcalendar#readme"
+}

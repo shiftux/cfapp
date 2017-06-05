@@ -1,0 +1,89 @@
+<template name="addEditEventModal">
+  <div class="modal fade" id="add-edit-event-modal" tabindex="-1" role="dialog" aria-labelledby="add-edit-event-modal">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          {{#if isInRole 'admin'}}
+            <h3 class="modal-title" id="add-edit-event">{{modalLabel.label}} Event</h3>
+          {{else}}
+            <h3 class="modal-title" id="add-edit-event">Event Details</h3>
+          {{/if}}
+        </div>
+
+        <ul class="nav nav-tabs nav-justified">
+          <li role="presentation" class="active" id="tab-event"><a href="#">Event</a></li>
+          <li role="presentation" id="tab-participants"><a href="#">Participants</a></li>
+        </ul>
+
+        <br>
+
+        {{#if tabIsEvent}}
+          {{#if isInRole 'admin'}}
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title">Event</h3>
+              </div>
+              <div class="panel-body">
+                {{#if modalType 'edit'}}
+                  {{> quickForm id="events-edit-form" collection="Events" doc=event type="update" fields="title,start,end,type,maxParticipants"}}
+                    <button id="delete-event-button" class="btn btn-danger pull-right delete-event">Delete Event</button>
+                {{else}}
+                  {{> quickForm id="events-edit-form" collection="Events" doc=event type="insert" fields="title,start,end,type,maxParticipants"}}
+                {{/if}}
+              </div>
+            </div>
+          {{else}}
+            <div class="panel panel-default" style="padding:20px;">
+              <div class="panel-heading">
+                <h3 class="panel-title">{{event.title}}</h3>
+              </div>
+              <div class="panel-body">
+                <p>{{event.type}} at <b>{{formatStart event.start}} until {{formatEnd event.end}}</b></p>
+                <p>Coach: {{coach}}</p>
+                <p><b>{{signedUpParticipants}}</b> of <b>{{event.maxParticipants}}</b> have signed up</p>
+                {{#if waiting}}
+                  <p>The event is currently fully booked. You are on the waiting list. {{waitListInFrontOf}} people are in front of you.</p>
+                  <button id="add-edit-user-waitRemove" class="btn btn-danger pull-left delete-event">Remove me from waiting list</button>
+                {{else}}
+                  {{#if booked}}
+                    <p>The event is currently fully booked. You can signup for the waiting list. Currently there are {{waitListCount}} people on the waiting list.</p>
+                    <button id="add-edit-user-wait" class="btn btn-info pull-left delete-event">Put me on waiting list</button>
+                  {{else}}
+                    {{#if participating}}
+                      <p>You are participating at this event</p>
+                      <button id="add-edit-user-unsubscribe" class="btn btn-danger pull-left delete-event">Unsubscribe</button>
+                    {{else}}
+                      {{#if free}}
+                        <button id="add-edit-user-participate" class="btn btn-success pull-left delete-event">Participate</button>
+                      {{/if}}
+                    {{/if}}
+                  {{/if}}
+                {{/if}}
+              </div>
+            </div>
+          {{/if}}
+
+        {{else}}
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">All Participants</h3>
+            </div>
+            <div class="panel-body">
+              <div class="list-group">
+                {{#each participantListItems}}
+                  <li href="#" class="list-group-item">{{showIndex @index}} - {{this.lastName}} {{this.firstName}}</li>
+                {{/each}}
+              </div>
+            </div>
+          </div>
+        {{/if}}
+
+
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+
+      </div>
+    </div>
+  </div>
+</template>

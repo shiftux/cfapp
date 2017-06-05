@@ -1,0 +1,86 @@
+<template name="statistics">
+  {{#if isInRole 'admin'}}
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Statistics for {{referenceDate}}</h3>
+      </div>
+      <div class="panel-body">
+        {{> quickForm id="demo" schema=schema}}
+        <button id="export-data" class="btn btn-success pull-right" data-loading-text="Exporting...">Export Data</button>
+      </div>
+    </div>
+    <h1 class="green-title">Daily Users</h1>
+    {{> dailyUserStats}} 
+    <h1 class="green-title">Weekly Users</h1>
+    {{> weeklyUserStats}}
+    <h1 class="green-title">Monthly Users</h1>
+    {{> monthlyUserStats}}
+    {{#if collapsedMode}}
+      <h1 class="green-title">Daily Users per type</h1>
+      <h2>{{referenceDate}}</h2>
+      {{> dailyTypeStats}}
+      <h1 class="green-title">Weekly Users per type</h1>
+      <h2>{{referenceWeek}}</h2>
+      {{> weeklyTypeStats}}
+      <h1 class="green-title">Monthly Users per type</h1>
+      <h2>{{referenceMonth}}</h2>
+      {{> monthlyTypeStats}}
+    {{else}} <!-- not collapsedMode -->
+      <br>
+      <div style="width: 47%; float: left;">
+        <h1 class="green-title">Daily Users per type</h1>
+        <h2>{{referenceDate}}</h2>
+        {{> dailyTypeStats}}
+      </div>
+      <div style="width: 47%; float: right;">
+        <h1 class="green-title">Weekly Users per type</h1>
+        <h2>{{referenceWeek}}</h2>
+        {{> weeklyTypeStats}}
+      </div>
+      <div style="width: 47%; float: left;">
+        <h1 class="green-title">Monthly Users per type</h1>
+        <h2>{{referenceMonth}}</h2>
+        {{> monthlyTypeStats}}
+      </div>      
+    {{/if}} <!-- end collapsedMode -->
+  {{else}}
+    <h2 style="color: red;"><b>Only Admin user can see this page!</b></h2>
+  {{/if}}
+
+</template>
+
+<template name="dailyUserStats">
+  <div id="dailyUserStatsParent">
+    <canvas id="dailyUserStats"></canvas>
+  </div>
+</template>
+
+<template name="weeklyUserStats">
+  <div id="weeklyUserStatsParent">
+    <canvas id="weeklyUserStats"></canvas>
+  </div>
+</template>
+
+<template name="monthlyUserStats">
+  <div id="monthlyUserStatsParent">
+    <canvas id="monthlyUserStats"></canvas>
+  </div>
+</template>
+
+<template name="dailyTypeStats">
+  <div id="dailyTypeStatsParent">
+    <canvas id="dailyTypeStats"></canvas>
+  </div>
+</template>
+
+<template name="weeklyTypeStats">
+  <div id="weeklyTypeStatsParent">
+    <canvas id="weeklyTypeStats"></canvas>
+  </div>
+</template>
+
+<template name="monthlyTypeStats">
+  <div id="monthlyTypeStatsParent">
+    <canvas id="monthlyTypeStats"></canvas>
+  </div>
+</template>

@@ -1,0 +1,81 @@
+.fc-event-container {
+  padding: 0px !important;
+}
+
+.fc-event {
+  padding: 0px 10px;
+  border-color: #ddd;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #000000;
+  /*background: #fff !important;*/
+}
+
+body .fc {
+    font-size: 1em;
+    background: white;
+    height: 100%;
+}
+
+.fc-content {
+  color: #444;
+}
+
+.signed-in {
+  border-style: solid;
+  border-width: medium;
+  border-color: #87bd65;
+}
+
+h4,h5 {
+  margin: 0;
+  font-weight: normal;
+}
+
+h4 {
+  color: #666;
+  font-size: 13px;
+  line-height: 18px;
+  white-space: normal;
+}
+
+h5 {
+  color: #888;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+p[class^="type-"] {
+  margin: 0;
+  font-size: 13px;
+  line-height: 18px;
+  white-space: normal;
+}
+
+p[class="type-WorkoutoftheDay"] {
+  color: white;
+}
+
+p[class="type-Yoga"] {
+  color: white;
+}
+
+p[class="type-OpenGym"] {
+  color: white;
+}
+
+p[class="type-MasterKlasse"] {
+  color:  white;
+}
+
+p[class="type-SpecialEvent"] {
+  color: white;
+}
+
+p[class="type-AdvancedKlasse"] {
+  color: white;
+}
+
+p[class="type-WeightLiftingKlasse"] {
+  color: white;
+}

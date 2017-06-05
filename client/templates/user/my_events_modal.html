@@ -1,0 +1,48 @@
+<template name="myEventsModal">
+  <div class="modal fade">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title">User Evens</h3>
+        </div>
+        <div class="modal-body">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">My registered events</h3>
+            </div>
+            <div class="panel-body">
+              <div class="list-group">
+                {{#if empty}}
+                  <h3 class="green-title">You're not registered for any events.</h3>
+                {{else}}
+                  {{#each myEvents}}
+                    <li href="#" class="list-group-item" id="my-events-event-link">{{title}} - {{start}}</li>
+                  {{/each}}
+                {{/if}}
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">My waiting list</h3>
+            </div>
+            <div class="panel-body">
+              <div class="list-group">
+                {{#if waitingEmpty}}
+                  <h3 class="green-title">You're not on any waiting lists.</h3>
+                {{else}}
+                  {{#each myWaitingList}}
+                    <li href="#" class="list-group-item" id="my-waitingList-event-link">{{title}} - {{start}}</li>
+                  {{/each}}
+                {{/if}}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

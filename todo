@@ -1,0 +1,115 @@
+todo
+
+reactive participants display
+logging
+loading at signup
+admin search
+
+INFINITE SCROLLING
+http://www.meteorpedia.com/read/Infinite_Scrolling
+
+USERACCOUNTS
+https://guide.meteor.com/accounts.html
+  - include search over users
+      https://themeteorchef.com/snippets/simple-search/#tmc-wiring-up-our-template-to-a-publication
+
+CALENDAR
+https://fullcalendar.io/
+https://themeteorchef.com/snippets/reactive-calendars-with-fullcalendar/
+- full calendar has a resize callback
+    https://fullcalendar.io/docs/display/windowResize/
+- and it has a list view, use this if window is smaller than something
+    https://fullcalendar.io/docs/list_view/
+- custom validation that start and end date have to be on the same date
+- be able to add multiple events (eg. every thursday)
+- smart way to manage the calendar (note! if users have subscribed an event cannot be deleted!)
+
+MONGO BACKUP & RESTORE
+https://www.digitalocean.com/community/tutorials/how-to-back-up-restore-and-migrate-a-mongodb-database-on-ubuntu-14-04
+
+BATCH FILLING
+https://atmospherejs.com/mikowals/batch-insert
+
+3 COLUMN LAYOUT
+http://codepen.io/Cheesetoast/pen/KFAaq
+
+TESTS:
+- test if subscriptions can only be updated by admins
+- no blacklist fields can be adapted
+- password can be updated and no missmatch is allowed
+- users can only modify their own info, and the CAN update their info, but only theirs
+- account can be deleted, but only by user himself, all his subscriptions are deleted as well (at leas future ones, pas ones can make errors)
+- same email subscriptions not possible
+- signup sends email
+- navbar has nav view only for admin
+- users don't get infos from others, only admin
+- user cannot add positive transactions
+- admin can add positive transactoins
+- user cannot change subscription type, admin can
+- user is displayed the correct subscription info
+- users are bumped if on waiting list, if unsubscribe happens from calendar or from user view
+- subscription updates for both types of users (single entry, and subscription), only admin, works and it doesn't default to single entries
+- users without subscriptions or remaining entries cannot signup
+- user cannot sign out after event has started
+- user only gets one entry deduced per day
+- my events button should show list of events
+- client cannot call any server function for another user
+- check overlapping condition and no-overlap-subscription
+- email verification circle
+- added event is shown in list
+- desaster recovery
+
+LOGGING
+- add a logger package
+    https://forums.meteor.com/t/whats-a-good-logging-package-for-a-meteor-app/21718
+
+limitations:
+- subscriptions:
+  - only admins can modify this
+  - [today, 14 months from now]
+
+QUESTIONS
+- refactor the Event.findOne in add_edit_event_modal
+- publish all users to event for the participants list, is this safe?
+- is the new signup page safe? password sent to server in clear?
+- template error on user page, at least in firefox
+- user unsubscribe from user page needs page refresh
+- SECURITY: Roles.getUsersInRole('admin') from console gives me the admin user id. then i can just call the methods as admin
+  -> in general are my server methods safe?
+- batch update on mongo
+- backup mongo
+- make it nicer on mobile
+- apply easy css
+- do not require reload after update of signup (problems in list view)
+
+FEEDBACK TOM
+- email to all participants of an event
+
+DOCKERIZE
+http://www.ifdattic.com/how-to-mongodb-nodejs-docker/
+https://markshust.com/2016/02/01/creating-custom-production-docker-image-meteor-13
+
+NGINX
+https://www.digitalocean.com/community/tutorials/how-to-deploy-a-meteor-js-application-on-ubuntu-14-04-with-nginx
+http://stackoverflow.com/questions/38033695/setting-nginx-reverse-proxy-to-serve-from-another-docker-container
+https://community.letsencrypt.org/t/lets-encrypt-certificate-not-working-for-andriods-google-chrome/7184/5 - for the chrome ssl error
+
+FEEDBACK FROM CYRIL
+- Gits so epis wie: passwort vergässo -> email zum resetto?
+- Der bug fam whatsup-video chund willt fa einom modal zum andro springsch und modals in browsra mit scrollbar deno hidend. Das isch aber nur wenig ufz mal und wer trickt da scho umcha wie en blöda.. Mina workaround isch gsi churzi verzögrig izbuwo bevor z zweit modal geffnot wird, de chund der scrollbar gat schnäll zrug und bootstrap kackt nimma ab. (Das isch en bekannta bootstrap issue, weiss z numer abr gat nimma)
+- Im event modal, soll der cancel button ganz unnena lings iner egga si?
+- Wennt signup machsch hani am afang gat nit getscheggt dasi ufe calender müess ver witer. Speter chund ma ja de diräkt druf..
+- Signup tscheggt ma fasch nit obs funktioniert het odr nit, abr wer macht das hito scho nu..
+
+TEST MIT COACHES, 17.4.17
+- the weeks are not loading immediately in calendar
+0 no parallel entries
+0 waiting list shown in my events
+0 excel report of daily participants
+0 maillist all users
+0 second kind of backup
+- vertrag
+
+RELEASE
+Infomail 9.5.17
+Release 15.5.17

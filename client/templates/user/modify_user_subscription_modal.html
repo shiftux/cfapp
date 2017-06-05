@@ -1,0 +1,46 @@
+<template name="modifyUserSubscriptionModal">
+  {{> deleteUserModal}}
+  <div class="modal fade" id="modify-user-subscription-modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title">User Subscriptions for {{userName}}</h3>
+        </div>
+        <div class="modal-body">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">Subscription Details</h3>
+            </div>
+            <div class="panel-body">
+              {{#autoForm collection="Users" type="update" doc=userInfo id="users-update-subscription-form"}}
+                {{> afQuickField name="emails.$.address" readonly=true value=userEmail}}
+                {{> afQuickField name="subscription.subscriptionType" options="allowed" noselect=true value=initialSubscription}}
+                {{#if afFieldValueIs name="subscription.subscriptionType" value="Subscription"}}
+                  {{> afQuickField name="subscription.startOfSubscription"}}
+                  {{> afQuickField name="subscription.endOfSubscription"}}
+                {{else}}
+                  {{> afQuickField name="profile.firstName" readonly=true label="Remaining entries" value=currentCredit }}
+                  {{> afQuickField name="subscription.additionalEntries" value="12"}}
+                {{/if}}
+                <div class="padding">
+                  <button type="submit" id="users-update-subscription-submit" class="btn btn-primary" >Submit</button>
+                </div>
+              {{/autoForm}}
+            </div>
+          </div>
+          <div class="panel panel-danger">
+            <div class="panel-heading">
+              <h3 class="panel-title">Delete user account</h3>
+            </div>
+            <div class="panel-body">
+              <button class="btn btn-danger" id="user-delete-button">Delete Account</button>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" id="modify-user-subscription-cancel" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

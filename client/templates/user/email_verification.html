@@ -1,0 +1,19 @@
+<!-- https://themeteorchef.com/tutorials/sign-up-with-email-verification -->
+<template name="emailVerification">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Email Verification</h3>
+    </div>
+    <div class="panel-body">
+      {{#if verified}}
+        <h1 class="green-title"> Your Email is verified</h1>
+      {{else}} 
+        <h1 class="green-title"> Email verification pending</h1>
+        <p>You should have gotten an email verification link. </p>
+        <p>If not request a new one: <a href="#" id="resend-verification-link">Resend verification link</a>.</p>
+        <p>Note: It can take up to 10 minutes to get the email, depending on your mail provider.</p>
+      {{/if}}
+    </div>
+  </div>
+  
+</template>

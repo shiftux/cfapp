@@ -1,0 +1,37 @@
+<!-- https://github.com/meteor-useraccounts/core/issues/300 -->
+
+<template name="customAtForm">
+  {{#unless hide}}
+    <div class="at-form">
+      {{#if showTitle}}
+        {{> atTitle}}
+      {{/if}}
+      {{#if showError}}
+        {{> atError}}
+      {{/if}}
+      {{#if showResult}}
+        {{> atResult}}
+      {{/if}}
+      {{#if showOauthServices}}
+        {{> atOauth}}
+      {{/if}}
+      {{#if showServicesSeparator}}
+        {{> atSep}}
+      {{/if}}
+      {{#if showPwdForm}}
+        {{> atPwdForm}}
+      {{/if}}
+      {{#if showTermsLink}}
+        {{> atTermsLink}}
+      {{/if}}
+      {{#if showSignInLink}}
+        {{> atSigninLink}}
+      {{/if}}
+      {{#if showSignUpLink}}
+        <br>
+        Don't have an account? <a href="{{pathFor route='signupForm'}}">Signup</a> <br>
+        Forgot your password? <a href="{{pathFor route='resetPassword'}}">Reset Password</a>
+      {{/if}}
+    </div>
+  {{/unless}}
+</template>

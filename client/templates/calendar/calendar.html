@@ -1,0 +1,31 @@
+<template name="calendar">
+  {{> addEditEventModal }}
+  {{#if isListView}}
+    <button id="calendar-button" type="button" class="btn btn-default pull-right">Calendar</button>
+    <br>
+    {{#each eventListKeys}}
+      <h3>{{this}}</h3>
+      <!-- {{#each eventListPerDay this}}
+          <a id="events-list-item" href="#" class="list-group-item"><b>{{{participating this}}}{{{waiting this}}}{{startTime start}} - {{title}}</b> <p>{{participantsCount}} of {{maxParticipants}} participants</p></a>
+      {{/each}} -->
+      {{> eventsPerDay day=this}}
+    {{/each}}
+    {{#if moreResults}}
+      <br>
+      <div id="showMoreResults" style="margin-left: 25px;">
+          <span class="loading">Loading...</span>
+      </div>
+    {{/if}}
+  {{/if}}
+  {{#HammerTouchArea gestureMap=templateGestures}}
+    <div class="swipe-test">
+      <div id="events-calendar"></div>
+    </div>
+  {{/HammerTouchArea}}
+</template>
+
+<template name='eventsPerDay'>
+  {{#each eventsPerDay}}
+    <a id="events-list-item" href="#" class="list-group-item"><b>{{{participating this}}}{{{waiting this}}}{{startTime start}} - {{title}}</b> <p>{{participantsCount}} of {{maxParticipants}} participants</p></a>
+  {{/each}}
+</template>

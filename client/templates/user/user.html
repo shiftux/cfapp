@@ -1,0 +1,109 @@
+<!-- get all the info from http://autoform.meteorapp.com/qfdetails -->
+
+<template name="user">
+  {{> addEditEventModal }}
+  {{#if currentUser}}
+    {{#if sameUser}}
+      <h1 class="green-title">{{name}}</h1>
+      <hr>
+      <br>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Subscription Info</h3>
+        </div>
+        <div class="panel-body">
+          {{#if collapsedMode}}
+            <div style="width: 100% important!; margin:0 auto;">
+              {{> circularProgress}}
+            </div>
+            <div style="width: 100%; margin:0 auto;">
+              <h3 class='green-title'>Subscription Type</h3>
+              <p>{{subscriptionType}}</p>
+              {{#if isSubscriptionUser}}
+                <h3 class='green-title'>Subscription Details</h3>
+                <p>Start Date: {{startDate}}</p>
+                <p>End Date: {{endDate}}</p>
+              {{/if}}
+              <br>
+              <div class="btn-group btn-group-justified" role="group">
+                <div class="btn-group" role="group">
+                  <button type="button" class="btn btn-primary" id='button-show-my-events'>My Events</button>
+                </div>
+                <div class="btn-group" role="group">
+                  <button type="button" class="btn btn-primary" id='button-purchase'>Purchase Entries</button>
+                </div>
+              </div>
+            </div>
+          {{else}} <!-- not collapse mode -->
+            <div style="width: 50%; float: left;">
+              {{> circularProgress}}
+            </div>
+            <div style="width: 50%; float: right;">
+              <h3 class='green-title'>Subscription Type</h3>
+              <p>{{subscriptionType}}</p>
+              {{#if isSubscriptionUser}}
+                <h3 class='green-title'>Subscription Details</h3>
+                <p>Start Date: {{startDate}}</p>
+                <p>End Date: {{endDate}}</p>
+              {{/if}}
+              <br>
+              <div class="btn-group btn-group-justified" role="group">
+                <div class="btn-group" role="group">
+                  <button type="button" class="btn btn-primary" id='button-show-my-events'>My Events</button>
+                </div>
+                <div class="btn-group" role="group">
+                  <button type="button" class="btn btn-primary" id='button-purchase'>Purchase Entries</button>
+                </div>
+              </div>
+            </div>
+          {{/if}} <!-- end collapse -->
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">User Info</h3>
+        </div>
+        <div class="panel-body">
+          {{> quickForm id="users-profile-form" collection="Users" doc=userDoc type="update" fields="profile.firstName,profile.lastName,profile.birthday"}}
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Email</h3>
+        </div>
+        <div class="panel-body">
+          {{> quickForm id="users-email-form" collection="Users" doc=userDoc type="update" fields="emails.0.address"}}
+        </div>
+      </div>
+
+      <div class="panel panel-danger">
+        <div class="panel-heading">
+          <h3 class="panel-title">Delete user account</h3>
+        </div>
+        <div class="panel-body">
+          <button class="btn btn-danger" id="user-delete-button" >Delete Account</button>
+        </div>
+      </div>
+    {{else}} <!-- not same user -->
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">User Info</h3>
+        </div>
+        <div class="panel-body">
+          {{> quickForm id="users-profile-form" collection="Users" doc=userDoc type="disabled" fields="profile.firstName,profile.lastName,profile.birthday"}}
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Email</h3>
+        </div>
+        <div class="panel-body">
+          {{> quickForm id="users-email-form" collection="Users" doc=userDoc type="disabled" fields="emails.0.address"}}
+        </div>
+      </div>
+    {{/if}} <!-- same user -->
+  {{else}}
+    {{> atForm}}
+  {{/if}}
+
+</template>

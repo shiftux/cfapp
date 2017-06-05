@@ -1,0 +1,54 @@
+<template name="navigation">
+<!--   {{> loginButtons}} -->
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="http://crossfittb.ch/">Tom's Box</a>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="{{pathFor route='main'}}">Calendar <span class="sr-only">(current)</span></a></li>
+          {{#if isInRole 'admin'}}
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="{{pathFor route='userList'}}">User List</a></li>
+                <li><a href="{{pathFor route='statistics'}}">Statistics</a></li>
+              </ul>
+            </li>
+          {{/if}}
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              {{#if currentUser }}
+                <li><a href="#"><p> {{userName}} </p></a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="{{pathFor 'user' _id=theId }}"> User Info </a></li>
+                <li><a href="{{pathFor route='changePassword'}}"> Change Password </a></li>
+                <li><a href="#" id="user-sign-out-button"> Sign Out </a></li>
+              {{else}}
+                <li><a href="/sign-in" id="user-sign-in-button"> Sign In </a></li>
+                <li><a href="/signup" id="user-sign-in-button"> New User? </a></li>
+              {{/if}}
+                <li role="separator" class="divider"></li>
+                <li><a href="/help" id="user-sign-in-button"> Help </a></li>
+            </ul>
+          </li>
+        </ul>
+
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
+</template>
