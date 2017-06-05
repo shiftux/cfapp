@@ -1,0 +1,31 @@
+<template name="weightsTableWorkouts">
+
+  <label class="item item-input">
+    <span class="input-label">Reference Weight</span>
+    <input type="number" id="reference-weight-field" value={{referenceWeight}}>
+  </label>
+
+  <style>
+    table, th, td {
+        border-collapse: collapse;
+    }
+    th, td {
+        padding: 8px;
+    }
+  </style>
+
+  <table style="width:100%">
+    {{#each percentage}}
+      {{> weightsTableWorkoutsListItem}}
+    {{/each}}
+  </table>
+
+</template>
+
+<template name="weightsTableWorkoutsListItem">
+  <tr>
+    <td>{{p}} %</td>
+    <td>{{pkg}} kg</td>
+    <td>{{plb}} lb</td>
+  </tr>
+</template>

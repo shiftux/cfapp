@@ -1,0 +1,64 @@
+<template name="exercise">
+  {{> deleteExerciseModal}}
+  {{> deleteWorkoutModal}}
+
+  <h1>{{name}}</h1>
+
+  {{#if isInRole 'admin'}}
+    <button type="button" class="btn btn-success" id="edit-exercise-button">
+      Edit
+    </button>
+  {{/if}}
+
+  <h3>Description</h3>
+  <p>{{description}}</p>
+
+  <div class="btn-group btn-group-justified" role="group">
+    <div class="btn-group" role="group">
+      <button type="button" class="btn btn-primary" id="exercise-workouts">
+        <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+      </button>
+    </div>
+    <div class="btn-group" role="group">
+      <button type="button" class="btn btn-primary" id="exercise-weights-table-workout">
+        <b>%</b>
+      </button>
+    </div>
+    <div class="btn-group" role="group">
+      <button type="button" class="btn btn-primary" id="exercise-chart-workout">
+        <span class="glyphicon glyphicon-signal" aria-hidden="true"></span>
+      </button>
+    </div>
+    {{#if videoPresent}}
+      <div class="btn-group" role="group">
+        <button type="button" class="btn btn-primary" id="exercise-video-button">
+          <span class="glyphicon glyphicon-film" aria-hidden="true"></span>
+        </button>
+      </div>
+    {{/if}}
+    <div class="btn-group" role="group">
+      <button type="button" class="btn btn-success" id="exercise-submit-workout">
+        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+      </button>
+    </div>
+  </div>
+
+ <!--  {{> workoutSubmit}} -->
+  {{#if subtemplate 'listWorkouts'}}
+    {{> listWorkouts}}
+  {{/if}}
+  {{#if subtemplate 'weightsTableWorkouts'}}
+    {{> weightsTableWorkouts}}
+  {{/if}}
+  {{#if subtemplate 'chartWorkouts'}}
+    {{> chartWorkouts}}
+  {{/if}}
+  {{#if subtemplate 'addWorkout'}}
+    {{> addWorkout}}
+  {{/if}}
+<!--   {{#if subtemplate 'workoutUpdate'}}
+    {{> workoutUpdate}}
+  {{/if}} -->
+
+
+</template>

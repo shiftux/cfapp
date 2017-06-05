@@ -24,14 +24,6 @@ Events.deny({
 });
 
 ///////////////////////////////////////////////////////////////////////////
-// Functions
-///////////////////////////////////////////////////////////////////////////
-
-function isAdmin(userId){
-  return Roles.userIsInRole(userId, "admin")
-};
-
-///////////////////////////////////////////////////////////////////////////
 // Schema
 ///////////////////////////////////////////////////////////////////////////
 
@@ -91,11 +83,8 @@ let EventsSchema = new SimpleSchema({
     optional: true,
     minCount: 0,
     regEx: SimpleSchema.RegEx.Id,
-    defaultValue: [],
-    custom: function(){
-      var max = this.field('maxParticipants').value
-      this.maxCount = max
-    }
+    maxCount: 12,//function(){return this.field('maxParticipants').value}
+    defaultValue: []
   },
   'participantsCount': {
     type: Number,

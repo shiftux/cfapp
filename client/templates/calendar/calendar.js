@@ -3,6 +3,11 @@
 // resizing described here:
 // http://stackoverflow.com/questions/28111602/change-fullcalendar-view-and-header-options-based-on-viewport-width
 
+let daysIncrement = 8;
+let startTime = moment();
+let groupedList = [];
+let dateFormat = "dddd, MMMM Do YYYY"
+
 let isPast = ( date ) => {
   let today = moment().format();
   return moment( today ).isAfter( moment(date) );
@@ -36,11 +41,6 @@ let getColor = (type) => {
       return '#4398DB'
   }
 }
-
-let daysIncrement = 8;
-let startTime = moment();
-let groupedList = [];
-let dateFormat = "dddd, MMMM Do YYYY"
 
 let options = {
   firstDay: 1,

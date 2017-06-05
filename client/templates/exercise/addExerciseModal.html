@@ -1,0 +1,17 @@
+<template name="addExerciseModal">
+  <div class="modal fade" id="add-exercise-modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Add new exercise</h4>
+        </div>
+        <div class="modal-body">
+          {{> quickForm id="add-exericises-form" collection="Exercises" type="insert"}}
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" id="modify-user-subscription-cancel" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

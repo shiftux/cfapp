@@ -7,11 +7,11 @@ Transactions.allow({
     return false;
   },
   update: function (userId, doc, fields, modifier) {
-    if(isAdmin) return true;
+    if(isAdmin(userId)) return true;
     return false;
   },
   remove: function (userId, doc, fields, modifier) {
-    if(isAdmin) return true;
+    if(isAdmin(userId)) return true;
     return false;
   },
 });
@@ -21,18 +21,6 @@ Transactions.deny({
   //update: () => true,
   //remove: () => true
 });
-
-///////////////////////////////////////////////////////////////////////////
-// Functions
-///////////////////////////////////////////////////////////////////////////
-
-function isAdmin(userId){
-  console.log('is admin? ', Roles.userIsInRole(userId, "admin"))
-  return Roles.userIsInRole(userId, "admin")
-};
-function sameUser(userId){
-  return Meteor.userId() === userId
-}
 
 ///////////////////////////////////////////////////////////////////////////
 // Schema

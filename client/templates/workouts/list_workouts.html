@@ -1,0 +1,37 @@
+<template name="listWorkouts">
+  {{#if noWorkoutsYet}}
+    <br>
+    <p>No workouts yet...</p>
+  {{else}}
+    <style>
+      table, th, td {
+          border-collapse: collapse;
+      }
+      th, td {
+          padding: 8px;
+      }
+    </style>
+
+    <table style="width:100%">
+      <tr>
+        <td><a href="#" id="workout-date-sort"><b>Date</b></a></td>
+        <td><a href="#" id="workout-weight-sort"><b>Weight</b></a></td>
+        <td><a href="#" id="workout-weight-sort"><b>Time</b></a></td>
+        <td><a href="#" id="workout-reps-sort"><b>Repetitions</b></a></td>
+        <td><b>Edit</b></td>
+      </tr>
+      {{#each workoutsList}}
+        <tr>
+          <td>{{humanDate date}}</td>
+          <td>{{weight}}</td>
+          <td>{{time}}</td>
+          <td>{{reps}}</td>
+          <td>
+            <a href="#" id="edit-workout-modal" data-ion-modal="workoutUpdateModal"> edit </a>
+          </td>
+        </tr>
+      {{/each}}
+    </table>
+  {{/if}}
+</template>
+

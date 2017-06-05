@@ -39,3 +39,17 @@ Meteor.publish('monthlyUserStats', function(referenceDate, monthRange){
   return Events.find({start: {$gte: moment(startDate).startOf('month').toDate(), $lt: moment(endDate).endOf('month').toDate()}})
 })
 
+Meteor.publish('exercises', function(type){
+  if(type === '') { type = 'Barbell' }
+  if(type === 'All') { return Exercises.find() }
+  else{ return Exercises.find({type: type}, {sort: {name: 1}}) }
+})
+
+Meteor.publish('exercise', function(id) {
+  return id && Exercises.find(id);
+});
+
+Meteor.publish('workoutsList', function(eid, uid){
+  return Workouts.find({exerciseId: eid, userId: uid}, {sort: {weight: -1}});
+});
+

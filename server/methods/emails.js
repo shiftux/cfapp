@@ -21,7 +21,7 @@ Meteor.methods({
 
 // console: 
 
-// curl -s --user 'api:$$$API_KEY$$$' \
+// curl -s --user 'api:key-9c6dcf01b121d5f92a8608e2eb777328' \
 //     https://api.mailgun.net/v3/crossfittb.ch/messages \
 //     -F from='Toms Box <noreply@crossfittb.ch>' \
 //     -F to=montanari.sandro@gmail.com \

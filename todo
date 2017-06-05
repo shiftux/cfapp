@@ -1,9 +1,12 @@
 todo
 
-reactive participants display
-logging
-loading at signup
 admin search
+when workouts are done, remove all workouts if an exercise is deleted
+show if there is a note
+workouts, as in WODs
+links to the exercises in the wods and they autocreate exercise entries, which in turn have a link back to the WOD
+maybe email-invites
+use docker-module in ansible for docker tasks
 
 INFINITE SCROLLING
 http://www.meteorpedia.com/read/Infinite_Scrolling
@@ -32,6 +35,14 @@ https://atmospherejs.com/mikowals/batch-insert
 
 3 COLUMN LAYOUT
 http://codepen.io/Cheesetoast/pen/KFAaq
+
+CERTIFICATES
+install: 
+	letsencrypt
+renew: 
+	docker stop nginx_proxy meteor_server
+	/root/.local/share/letsencrypt/bin/certbot renew
+	docker start nginx_proxy meteor_server
 
 TESTS:
 - test if subscriptions can only be updated by admins
@@ -63,11 +74,6 @@ LOGGING
 - add a logger package
     https://forums.meteor.com/t/whats-a-good-logging-package-for-a-meteor-app/21718
 
-limitations:
-- subscriptions:
-  - only admins can modify this
-  - [today, 14 months from now]
-
 QUESTIONS
 - refactor the Event.findOne in add_edit_event_modal
 - publish all users to event for the participants list, is this safe?
@@ -82,9 +88,6 @@ QUESTIONS
 - apply easy css
 - do not require reload after update of signup (problems in list view)
 
-FEEDBACK TOM
-- email to all participants of an event
-
 DOCKERIZE
 http://www.ifdattic.com/how-to-mongodb-nodejs-docker/
 https://markshust.com/2016/02/01/creating-custom-production-docker-image-meteor-13
@@ -95,11 +98,8 @@ http://stackoverflow.com/questions/38033695/setting-nginx-reverse-proxy-to-serve
 https://community.letsencrypt.org/t/lets-encrypt-certificate-not-working-for-andriods-google-chrome/7184/5 - for the chrome ssl error
 
 FEEDBACK FROM CYRIL
-- Gits so epis wie: passwort vergässo -> email zum resetto?
 - Der bug fam whatsup-video chund willt fa einom modal zum andro springsch und modals in browsra mit scrollbar deno hidend. Das isch aber nur wenig ufz mal und wer trickt da scho umcha wie en blöda.. Mina workaround isch gsi churzi verzögrig izbuwo bevor z zweit modal geffnot wird, de chund der scrollbar gat schnäll zrug und bootstrap kackt nimma ab. (Das isch en bekannta bootstrap issue, weiss z numer abr gat nimma)
-- Im event modal, soll der cancel button ganz unnena lings iner egga si?
-- Wennt signup machsch hani am afang gat nit getscheggt dasi ufe calender müess ver witer. Speter chund ma ja de diräkt druf..
-- Signup tscheggt ma fasch nit obs funktioniert het odr nit, abr wer macht das hito scho nu..
+- wodify intro: https://www.youtube.com/watch?v=X90QfhuDpyw&feature=youtu.be
 
 TEST MIT COACHES, 17.4.17
 - the weeks are not loading immediately in calendar
@@ -108,8 +108,11 @@ TEST MIT COACHES, 17.4.17
 0 excel report of daily participants
 0 maillist all users
 0 second kind of backup
-- vertrag
+0 vertrag
+
+ANSIBLE:
+- certificate stuff
 
 RELEASE
-Infomail 9.5.17
-Release 15.5.17
+Infomail 15.5.17
+Release 22.5.17

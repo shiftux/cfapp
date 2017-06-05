@@ -14,7 +14,7 @@ Users.allow({
   },
   update: function (userId, doc, fieldNames, modifier) {
     console.log("in update function, modifier: " + modifier + " fieldNames: " + fieldNames)
-    if ( !(isOwner(userId,doc) || Roles.userIsInRole(userId, "admin") )) {
+    if ( !(isOwner(userId,doc) || isAdmin(userId) )) {
       return false;
     }
     if (editBlacklistField(fieldNames, blacklist)) {
@@ -33,12 +33,6 @@ Users.allow({
 // //////////////////////////////////////////////////////////////////////////////////////////////////////
 // // Functions
 // //////////////////////////////////////////////////////////////////////////////////////////////////////
-
-function isOwner(userId, doc){
-  if (userId && doc._id === userId) {
-    return true
-  }
-};
 
 function editBlacklistField(fieldNames, blacklist){
   _.contains(_.map(fieldNames,function(f){return _.contains(blacklist,f)}), true)
