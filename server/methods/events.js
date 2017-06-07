@@ -3,6 +3,7 @@ Meteor.methods({
     if(userId != this.userId){throw new Meteor.Error(777, 'Unauthorized', 'Unauthorized')} 
     ok = false
     noOverlap = false
+    inThePast = true
     Meteor.call('subscriptionOK', userId, event, function(error, result){
       if(error){throw new Meteor.Error(701, 'Not enough credit', 'You need to buy more credit!')}
       else{ok = result}
@@ -11,8 +12,13 @@ Meteor.methods({
       if(error){throw new Meteor.Error(702, 'Overlapping', 'You cannot sign up to multiple events simultaneously!')}
       else{noOverlap = result}
     })
+    Meteor.call('checkInThePast', userId, event, function(error, result){
+      if(error){throw new Meteor.Error(703, 'Event Past', 'You cannot sign up to an event in the past!')}
+      else{inThePast = result}
+    })
     if(!ok) {throw new Meteor.Error('', 'You have no entries left! Speak to your coach.')}
     if(!noOverlap) {throw new Meteor.Error('', 'You cannot sign up to multiple events simultaneously!')}
+    if(inThePast) {throw new Meteor.Error('', 'You cannot sign up to an event in the past!')}
     let e = Events.findOne( event );
     var array = e.participants
     if (array){
@@ -158,6 +164,9 @@ Meteor.methods({
       })
     })
     return !overlap
+  },
+  checkInThePast: function(userId, event){
+    return moment(event.start).isBefore(moment())
   },
   numberOfParticipationsToday: function(userId, event){
     return Events.find({participants: userId, 

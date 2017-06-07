@@ -3,7 +3,7 @@ Meteor.publish('user', function(id) {
 });
 
 Meteor.publish( 'events', function(daysLimit = 8) {
-  return Events.find({start: {$gte: moment().toDate(), $lte: moment().add(daysLimit, 'days').toDate()}});
+  return Events.find({start: {$gte: moment().add(-24,'hours').toDate(), $lte: moment().add(daysLimit, 'days').toDate()}});
 });
 
 Meteor.publish( 'participants', function(eventId) {

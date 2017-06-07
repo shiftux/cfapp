@@ -5,9 +5,6 @@
     <br>
     {{#each eventListKeys}}
       <h3>{{this}}</h3>
-      <!-- {{#each eventListPerDay this}}
-          <a id="events-list-item" href="#" class="list-group-item"><b>{{{participating this}}}{{{waiting this}}}{{startTime start}} - {{title}}</b> <p>{{participantsCount}} of {{maxParticipants}} participants</p></a>
-      {{/each}} -->
       {{> eventsPerDay day=this}}
     {{/each}}
     {{#if moreResults}}
@@ -26,6 +23,10 @@
 
 <template name='eventsPerDay'>
   {{#each eventsPerDay}}
-    <a id="events-list-item" href="#" class="list-group-item"><b>{{{participating this}}}{{{waiting this}}}{{startTime start}} - {{title}}</b> <p>{{participantsCount}} of {{maxParticipants}} participants</p></a>
+    {{#if isPast this}}
+      <a id="events-list-item" href="#" class="list-group-item" style="background-color:LightGray;"><b>{{{participating this}}}{{{waiting this}}}{{startTime start}} - {{title}}</b> <p>{{participantsCount}} of {{maxParticipants}} participants</p></a>
+    {{else}}
+      <a id="events-list-item" href="#" class="list-group-item"><b>{{{participating this}}}{{{waiting this}}}{{startTime start}} - {{title}}</b> <p>{{participantsCount}} of {{maxParticipants}} participants</p></a>
+    {{/if}}
   {{/each}}
 </template>

@@ -3,9 +3,9 @@
 // resizing described here:
 // http://stackoverflow.com/questions/28111602/change-fullcalendar-view-and-header-options-based-on-viewport-width
 
-let isPast = ( date ) => {
-  let today = moment().format();
-  return moment( today ).isAfter( moment(date) );
+let noLongerVisible = ( date ) => {
+  let reference = moment().add(-24,'hours').format();
+  return moment( reference ).isAfter( moment(date) );
 };
 
 let getColor = (type) => {
@@ -73,9 +73,10 @@ let options = {
   },
   events( start, end, timezone, callback ) { // full-calendar specific method (can also be an array)
     let data = Events.find().fetch().map( ( event ) => {
-      if(!isPast(event.start)){
+      if(!noLongerVisible(event.start)){
         event.editable = false;
-        event.backgroundColor = getColor(event.type);
+        if(moment(event.start).isBefore(moment())) {event.backgroundColor = '#D1D1D1'}
+        else {event.backgroundColor = getColor(event.type); }
         if(event.title === 'Workout of the Day') event.title = 'WOD';
         return event;
       }
@@ -246,6 +247,10 @@ Template.eventsPerDay.helpers({
   startTime = moment(this.day, dateFormat).startOf('day').toDate()
   endTime = moment(this.day, dateFormat).endOf('day').toDate()
     return Events.find({start: {$gte: startTime, $lt: endTime}}, {sort: {start: 1}}).fetch()
+  },
+  isPast: function( event ) {
+    let today = moment().format();
+    return moment( today ).isAfter( moment(event.start) );
   },
   participating: function(event){
     return ($.inArray(Meteor.userId(), event.participants) >= 0) ?  '<b style="color:#E09DE3;font-size:200%;">\u2022 </b>' : ""

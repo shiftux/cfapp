@@ -148,7 +148,7 @@ Template.addEditEventModal.events({
         FlashMessages.sendError("Cannont participate! " + error);
       } else{
         $('#add-edit-event-modal').modal('hide')
-        FlashMessages.sendSuccess("Successfully signed up for event");
+        // FlashMessages.sendSuccess("Successfully signed up for event");
       }
     });
   },
@@ -161,7 +161,7 @@ Template.addEditEventModal.events({
         FlashMessages.sendError(error);
       } else{
         $('#add-edit-event-modal').modal('hide')
-        FlashMessages.sendSuccess("Successfully unsubscribed from event");
+        // FlashMessages.sendSuccess("Successfully unsubscribed from event");
       }
     });
   },
@@ -174,7 +174,7 @@ Template.addEditEventModal.events({
         FlashMessages.sendError("Cannont go in waiting list! " + error);
       } else{
         $('#add-edit-event-modal').modal('hide')
-        FlashMessages.sendSuccess("Successfully added you to waiting List");
+        // FlashMessages.sendSuccess("Successfully added you to waiting List");
       }
     });
   },
@@ -186,7 +186,7 @@ Template.addEditEventModal.events({
         alert('Could not remove from waiting list');
       } else{
         $('#add-edit-event-modal').modal('hide')
-        FlashMessages.sendSuccess("Successfully removed entry from waiting list");
+        // FlashMessages.sendSuccess("Successfully removed entry from waiting list");
       }
     });
   },
