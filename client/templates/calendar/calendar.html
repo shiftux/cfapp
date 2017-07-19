@@ -13,7 +13,7 @@
           <span class="loading">Loading...</span>
       </div>
     {{/if}}
-  {{/if}}
+  {{/if}} <!-- not list view -->
   {{#HammerTouchArea gestureMap=templateGestures}}
     <div class="swipe-test">
       <div id="events-calendar"></div>
@@ -21,6 +21,7 @@
   {{/HammerTouchArea}}
 </template>
 
+<!-- list view details -->
 <template name='eventsPerDay'>
   {{#each eventsPerDay}}
     {{#if isPast this}}

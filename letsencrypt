@@ -1,0 +1,10 @@
+letsencrypt
+
+docker stop nginx_proxy
+run letsencrypt/certbot-auto renew
+# change the number of the fullchain and privatekey files and link the new ones
+ln -sf /etc/letsencrypt/archive/login.crossfittb.ch/fullchain3.pem /etc/letsencrypt/archive/login.crossfittb.ch/login.crossfittb.ch.crt
+ln -sf /etc/letsencrypt/archive/login.crossfittb.ch/privkey3.pem /etc/letsencrypt/archive/login.crossfittb.ch/login.crossfittb.ch.key
+docker start nginx_proxy
+
+# check in the browser (developper tools - security tab) to see the certificate if it is valid longer now

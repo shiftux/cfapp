@@ -1,3 +1,11 @@
+////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////
+// MANAGED BY ANSIBLE
+////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////
+
 Meteor.startup(function() {
 
   if (Users.find({}).count() === 0 ){
@@ -8,7 +16,19 @@ Meteor.startup(function() {
       createdAt: new Date(),
       roles: ["admin"]
     });
-  } // users == 0
+          var sandro = Meteor.users.insert({
+        emails: [ { address: 's.montanari@gmx.ch', verified: true } ],
+        services: { password: { bcrypt: '$2a$10$WLyAcxErBJOmtk5MzcOtQu4k.9fObU4RPJGfDEH1jKsTkHlEad3T6' }, resume: { loginTokens: [] } },
+        profile: {firstName: "Sandro", lastName: "Montanari", birthday: new Date(2015,10,1) },
+        createdAt: new Date(),
+      });
+      var ordnas = Meteor.users.insert({
+        emails: [ { address: 'montanari.sandro@gmail.com', verified: true } ],
+        services: { password: { bcrypt: '$2a$10$5uj6KCOr5vmZzxrXwwdAA.bAWD6KKpKuU/jvcpoTR76aSeo0ANqQK' }, resume: { loginTokens: [] } },
+        profile: {firstName: "Ordnas", lastName: "Iranatnom", birthday: new Date(2015,10,1) },
+        createdAt: new Date(),
+      });
+      } // users == 0
 
   if (Events.find({}).count() === 0 ){
     date = moment().add(1,'days')
@@ -18,6 +38,19 @@ Meteor.startup(function() {
       date = date.add(1,'days')
     } // while
   } // events == 0
+
+//  if (Exercises.find({}).count() === 0 ){
+//    var now = new Date();
+//
+//    csv = Assets.getText('crossfit_workouts.csv');
+//    rows = Papa.parse(csv, {header: true, skipEmptyLines: true, dynamicTyping: true}).data;
+//
+//    _.map(rows, function(row){ 
+//      if (!(row.type === '')) {
+//        Exercises.insert(row);
+//      }
+//    });
+//  } // exercises == 0
 }); // startup
 
 
@@ -55,8 +88,8 @@ function fillMonday(date){
   createOpenGym2h(moment(date).startOf('day').add(11, 'hours'))
   createWOD(moment(date).startOf('day').add(12,'hours'))
   createWOD(moment(date).startOf('day').add(17,'hours'))
-  createWOD(moment(date).startOf('day').add(18,'hours', 'Adrian'))
-  createWOD8limit(moment(date).startOf('day').add(19,'hours', 'Adrian'))
+  createWOD(moment(date).startOf('day').add(18,'hours'), 'Adrian')
+  createWOD8limit(moment(date).startOf('day').add(19,'hours'), 'Adrian')
   createOpenGym(moment(date).startOf('day').add(16, 'hours'))
   createOpenGym(moment(date).startOf('day').add(17.5, 'hours'))
   createAdvanced(moment(date).startOf('day').add(19,'hours'))
@@ -92,15 +125,15 @@ function fillThursday(date){
   createOpenGym2h(moment(date).startOf('day').add(11, 'hours'))
   createWOD(moment(date).startOf('day').add(12, 'hours'))
   createWOD(moment(date).startOf('day').add(17, 'hours'))
-  createWOD(moment(date).startOf('day').add(18, 'hours'))
-  createWOD8limit(moment(date).startOf('day').add(19, 'hours'))
+  createWOD(moment(date).startOf('day').add(18, 'hours'), 'Sibylle')
+  createWOD8limit(moment(date).startOf('day').add(19, 'hours'), 'Sibylle')
   createOpenGym(moment(date).startOf('day').add(16, 'hours'))
   createOpenGym(moment(date).startOf('day').add(17.5, 'hours'))
   createAdvanced(moment(date).startOf('day').add(19, 'hours'))
 }
 
 function fillFriday(date){
-  createOpenGym2h(moment(date).startOf('day').add(17, 'hours'))
+  createOpenGym2h(moment(date).startOf('day').add(17, 'hours'), 'Christine')
   createWeightLifting(moment(date).startOf('day').add(17, 'hours'))
   createYoga(moment(date).startOf('day').add(19, 'hours'))
 }
@@ -114,7 +147,7 @@ function fillSaturday(date){
 }
 
 function fillSunday(date){
-  createOpenGym20limit(moment(date).startOf('day').add(14, 'hours'))
+  createOpenGym20limit(moment(date).startOf('day').add(14, 'hours'), 'Christine / Claudia')
 }
 
 function createWOD(dateTime, coach='Tom'){
@@ -205,7 +238,7 @@ function createWeightLifting(dateTime, coach='Christine'){
   });
 }
 
-function createAdvanced(dateTime, coach='Tobias'){
+function createAdvanced(dateTime, coach='Tobs'){
   Events.insert({
     title: 'Advanced Class',
     type: 'Advanced Klasse',

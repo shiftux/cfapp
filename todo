@@ -1,5 +1,6 @@
 todo
 
+meteor function should not allow to participate more than max participants!!! and also update the correct number of shown participants
 reactive participants display
 logging
 loading at signup
