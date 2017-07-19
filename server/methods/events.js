@@ -20,6 +20,7 @@ Meteor.methods({
     if(!noOverlap) {throw new Meteor.Error('', 'You cannot sign up to multiple events simultaneously!')}
     if(inThePast) {throw new Meteor.Error('', 'You cannot sign up to an event in the past!')}
     let e = Events.findOne( event );
+    if(e.participants.length >= e.maxParticipants) {throw new Meteor.Error('', 'Max number of participants reached!')}
     var array = e.participants
     if (array){
       array.push(userId)
@@ -54,7 +55,6 @@ Meteor.methods({
           Meteor.call('bumpFromWaitingList',e,function( error, result) {
             if ( error ) { console.log ( error ); return false }
           });
-          // notification email
         }
       });
       count = 0
