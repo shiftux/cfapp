@@ -107,7 +107,8 @@ Meteor.methods({
     if (waitArray && Object.keys(waitArray).length > 0 && Object.keys(participantsArray).length < event.maxParticipants){
       var bumper = waitArray.shift();
       participantsArray.push(bumper);
-      Events.update({_id: event._id}, {$set:{waitingList: waitArray, participants: participantsArray}})
+      participantsLength = participantsArray.length
+      Events.update({_id: event._id}, {$set:{waitingList: waitArray, participants: participantsArray, participantsCount: participantsLength}})
       count = 0
       Meteor.call('numberOfParticipationsToday', bumper, event, function(error, result){count = result})
       if(count <= 1){
