@@ -16,18 +16,6 @@ Meteor.startup(function() {
       createdAt: new Date(),
       roles: ["admin"]
     });
-          var sandro = Meteor.users.insert({
-        emails: [ { address: 's.montanari@gmx.ch', verified: true } ],
-        services: { password: { bcrypt: '$2a$10$WLyAcxErBJOmtk5MzcOtQu4k.9fObU4RPJGfDEH1jKsTkHlEad3T6' }, resume: { loginTokens: [] } },
-        profile: {firstName: "Sandro", lastName: "Montanari", birthday: new Date(2015,10,1) },
-        createdAt: new Date(),
-      });
-      var ordnas = Meteor.users.insert({
-        emails: [ { address: 'montanari.sandro@gmail.com', verified: true } ],
-        services: { password: { bcrypt: '$2a$10$5uj6KCOr5vmZzxrXwwdAA.bAWD6KKpKuU/jvcpoTR76aSeo0ANqQK' }, resume: { loginTokens: [] } },
-        profile: {firstName: "Ordnas", lastName: "Iranatnom", birthday: new Date(2015,10,1) },
-        createdAt: new Date(),
-      });
       } // users == 0
 
   if (Events.find({}).count() === 0 ){
