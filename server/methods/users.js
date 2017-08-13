@@ -46,7 +46,7 @@ Meteor.methods({
     return count;
   },
   'removeFromAllEvents': function(userId){
-    if(userId !== this.userId && !Roles.userIsInRole(this.userId, 'admin')){throw new Meteor.Error(666, 'Unauthorized', 'Unauthorized')} 
+    if(userId !== this.userId && !Roles.userIsInRole(this.userId, 'admin')){throw new Meteor.Error(666, 'Unauthorized', 'Unauthorized')}
     ok = false
     if(Events.find({participants: userId}).fetch().length === 0){ok = true}
     Events.find({participants: userId}).forEach(function(e){  //, start: {$gte: moment().format('YYYY-MM-DDTHH:mm')}}).forEach(function(e){

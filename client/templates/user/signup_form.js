@@ -11,7 +11,7 @@ Template.signupForm.events({
     var doc = {
       firstName: event.target.firstName.value,
       lastName: event.target.lastName.value,
-      email: event.target.email.value.downcase,
+      email: event.target.email.value.toLowerCase(),
       password: event.target.password.value,
       passwordConfirmation: event.target.passwordConfirmation.value,
     }

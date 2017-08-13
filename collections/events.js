@@ -75,7 +75,7 @@ let EventsSchema = new SimpleSchema({
     type: String,
     label: 'Coach',
     optional: false,
-    allowedValues: [ 'Tom', 'Christine', 'Adrian', 'Sibylle', 'Ruth', 'Tobias', 'Claudia', 'Sebastian' ],
+    allowedValues: [ 'Tom', 'Christine', 'Adrian', 'Sibylle', 'Ruth', 'Tobs', 'Claudia', 'Sebastian', 'Christine / Claudia' ],
     defaultValue: 'Tom'
   },
   'maxParticipants': {
