@@ -2,6 +2,7 @@ todo
 
 logging
 admin search
+make sure the db is backed up before ansible messes up the docker contaieners, check in build_and_cleanup_remote_host
 
 INFINITE SCROLLING
 http://www.meteorpedia.com/read/Infinite_Scrolling
