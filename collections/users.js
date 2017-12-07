@@ -145,7 +145,7 @@ Schema.User = new SimpleSchema({
   },
   "emails.$.verified": {
     type: Boolean,
-    defaultValue: false, 
+    defaultValue: false,
     optional: true
   },
   createdAt: {

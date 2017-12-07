@@ -1,7 +1,7 @@
 letsencrypt
 
 docker stop nginx_proxy
-run letsencrypt/certbot-auto renew
+~/letsencrypt/certbot-auto renew
 # change the number of the fullchain and privatekey files and link the new ones
 ln -sf /etc/letsencrypt/archive/login.crossfittb.ch/fullchain3.pem /etc/letsencrypt/archive/login.crossfittb.ch/login.crossfittb.ch.crt
 ln -sf /etc/letsencrypt/archive/login.crossfittb.ch/privkey3.pem /etc/letsencrypt/archive/login.crossfittb.ch/login.crossfittb.ch.key
