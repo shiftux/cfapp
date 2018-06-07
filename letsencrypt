@@ -3,8 +3,12 @@ letsencrypt
 docker stop nginx_proxy
 ~/letsencrypt/certbot-auto renew
 # change the number of the fullchain and privatekey files and link the new ones
-ln -sf /etc/letsencrypt/archive/login.crossfittb.ch/fullchain3.pem /etc/letsencrypt/archive/login.crossfittb.ch/login.crossfittb.ch.crt
-ln -sf /etc/letsencrypt/archive/login.crossfittb.ch/privkey3.pem /etc/letsencrypt/archive/login.crossfittb.ch/login.crossfittb.ch.key
+ln -sf /etc/letsencrypt/archive/login.crossfittb.ch/fullchain6.pem /etc/letsencrypt/archive/login.crossfittb.ch/login.crossfittb.ch.crt
+ln -sf /etc/letsencrypt/archive/login.crossfittb.ch/privkey6.pem /etc/letsencrypt/archive/login.crossfittb.ch/login.crossfittb.ch.key
 docker start nginx_proxy
 
 # check in the browser (developper tools - security tab) to see the certificate if it is valid longer now
+
+
+
+mount -t cifs //192.168.1.124/multimedia_share /mnt/shiftyNAS_multimedia_share -o user=admin,password=SHinym3talass,rw,iocharset=utf8,sec=ntlm

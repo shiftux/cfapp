@@ -112,7 +112,6 @@ Schema.UserSubscription = new SimpleSchema({
   endOfSubscription: {
     type: Date,
     min: moment().toDate(),
-    max: moment().add(14, 'months').toDate(),
     defaultValue: moment().toDate(),
     optional: false,
     autoform: {type: "bootstrap-datepicker"},
