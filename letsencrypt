@@ -9,6 +9,5 @@ docker start nginx_proxy
 
 # check in the browser (developper tools - security tab) to see the certificate if it is valid longer now
 
-
-
-mount -t cifs //192.168.1.124/multimedia_share /mnt/shiftyNAS_multimedia_share -o user=admin,password=SHinym3talass,rw,iocharset=utf8,sec=ntlm
+#### !!!!! ######
+set calendar reminder for next renewal

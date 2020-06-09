@@ -44,13 +44,13 @@ Template.modifyUserSubscriptionModal.events({
       startDate = moment(values.insertDoc.subscription.startOfSubscription).toDate()
       endDate = values.insertDoc.subscription.endOfSubscription
       Meteor.call('updateSubscription', Session.get('userToModify')._id, startDate, endDate, function(error, result){
-        if ( error ) {FlashMessages.sendError("Failed to modify subscription!" + error)}
+        if ( error ) {FlashMessages.sendError("Failed to modify subscription! " + error)}
         // else {FlashMessages.sendSuccess("Successfully modified subscription of " + Session.get('userToModify').profile.firstName) }
       })
     } else {
       additionalEntries = values.insertDoc.subscription.additionalEntries
       Meteor.call('updateSubscriptionEntries', Session.get('userToModify')._id, additionalEntries, function(error, result){
-        if ( error ) {FlashMessages.sendError("Failed to modify subscription!" + error) }
+        if ( error ) {FlashMessages.sendError("Failed to modify subscription! " + error) }
         // else {FlashMessages.sendSuccess("Successfully modified subscription of " + Session.get('userToModify').profile.firstName) }
       })
     }
