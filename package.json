@@ -5,7 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "babel-runtime": "^6.23.0",
-    "bcrypt": "^1.0.2",
+    "bcrypt": "^5.0.0",
     "chart": "^0.1.2",
     "chart.js": "^2.6.0"
   },
